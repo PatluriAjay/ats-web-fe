@@ -55,7 +55,6 @@ const Layout = () => {
               className={settingsDropdownOpen ? "settings-text active" : "settings-text"}
               onClick={() => setSettingsDropdownOpen((v) => !v)}
               tabIndex={0}
-              onBlur={() => setTimeout(() => setSettingsDropdownOpen(false), 150)}
               style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}
             >
               Settings
@@ -68,11 +67,11 @@ const Layout = () => {
               </svg>
             </span>
             {settingsDropdownOpen && (
-              <div className="settings-dropdown">
-                <NavLink className="px-2" to="/settings/skills">Skills</NavLink>
-                <NavLink className="px-2" to="/settings/tags">Tags</NavLink>
-                <NavLink className="px-2" to="/settings/locations">Locations</NavLink>
-                <NavLink className="px-2" to="/settings/statuses">Statuses</NavLink>
+              <div className="settings-dropdown" onMouseLeave={() => setSettingsDropdownOpen(false)}>
+                <NavLink className="px-2" to="/settings/skills" onClick={() => setSettingsDropdownOpen(false)}>Skills</NavLink>
+                <NavLink className="px-2" to="/settings/tags" onClick={() => setSettingsDropdownOpen(false)}>Tags</NavLink>
+                <NavLink className="px-2" to="/settings/locations" onClick={() => setSettingsDropdownOpen(false)}>Locations</NavLink>
+                <NavLink className="px-2" to="/settings/statuses" onClick={() => setSettingsDropdownOpen(false)}>Statuses</NavLink>
               </div>
             )}
           </li>
