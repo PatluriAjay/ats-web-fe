@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/Candidates.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
+import Select from "react-select";
 import { skillsOptions } from "../constants/skills";
 
 const candidateList = [
@@ -197,26 +196,22 @@ const Candidates = () => {
 						fontSize: "1rem",
 					}}
 				/>
-				<Autocomplete
-					multiple
-					options={skillsOptions}
-					value={searchSkills}
-					onChange={(_, value) => setSearchSkills(value)}
-					renderInput={(params) => (
-						<TextField
-							{...params}
-							placeholder="Search by skills"
-							variant="outlined"
-							size="small"
-						/>
-					)}
-					filterSelectedOptions
-					disableCloseOnSelect
-					sx={{
-						minWidth: 300,
-						maxWidth: 340,
-						background: "#fff",
-						borderRadius: "6px",
+				<Select
+					isMulti
+					options={skillsOptions.map((s) => ({ value: s, label: s }))}
+					value={searchSkills.map((s) => ({ value: s, label: s }))}
+					onChange={(selected) =>
+						setSearchSkills(selected ? selected.map((opt) => opt.value) : [])
+					}
+					placeholder="Search by skills"
+					classNamePrefix="react-select"
+					styles={{
+						container: (base) => ({
+							...base,
+							minWidth: 300,
+							maxWidth: 340,
+						}),
+						menu: (base) => ({ ...base, zIndex: 9999 }),
 					}}
 				/>
 			</div>

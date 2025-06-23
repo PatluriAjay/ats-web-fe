@@ -3,18 +3,27 @@ import { useNavigate } from "react-router-dom";
 import "../styles/CreateRequisition.scss";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
+import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 const statusOptions = ["Active", "On Hold", "Closed", "Draft"];
 const experienceOptions = ["0-1 years", "1-3 years", "3-5 years", "5+ years"];
 const departmentOptions = ["Engineering", "Product", "Design", "Marketing", "Analytics", "Human Resources", "Sales"];
 const recruiterOptions = [
-  "John Smith", "Sarah Johnson", "Mike Wilson", "Lisa Chen", "David Brown", "Emily Davis", "Alex Thompson", "Jennifer Lee", "Michael Rodriguez", "Rachel Green"
+  { value: "John Smith", label: "John Smith" },
+  { value: "Sarah Johnson", label: "Sarah Johnson" },
+  { value: "Mike Wilson", label: "Mike Wilson" },
+  { value: "Lisa Chen", label: "Lisa Chen" },
+  { value: "David Brown", label: "David Brown" },
+  { value: "Emily Davis", label: "Emily Davis" },
+  { value: "Alex Thompson", label: "Alex Thompson" },
+  { value: "Jennifer Lee", label: "Jennifer Lee" },
+  { value: "Michael Rodriguez", label: "Michael Rodriguez" },
+  { value: "Rachel Green", label: "Rachel Green" }
 ];
 
+// Simulate API call, replace with real API
 const fetchSkills = async (query) => {
-  // Simulate API call, replace with real API
   const allSkills = [
     "React", "TypeScript", "Node.js", "Python", "Machine Learning", "SQL", 
     "Product Management", "Agile", "Analytics", "Figma", "Sketch", "User Research",
@@ -41,21 +50,16 @@ const CreateRequisition = () => {
     remarks: ""
   });
   const [error, setError] = useState("");
-  const [skillSuggestions, setSkillSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [skillOptions, setSkillOptions] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     let active = true;
-    if (form.skillInput) {
-      fetchSkills(form.skillInput).then(skills => {
-        if (active) setSkillSuggestions(skills.filter(s => !form.skills.includes(s)));
-      });
-    } else {
-      setSkillSuggestions([]);
-    }
+    fetchSkills("").then(skills => {
+      if (active) setSkillOptions(skills.map(s => ({ value: s, label: s })));
+    });
     return () => { active = false; };
-  }, [form.skillInput, form.skills]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, options, multiple } = e.target;
@@ -69,7 +73,6 @@ const CreateRequisition = () => {
 
   const handleSkillInput = (e) => {
     setForm(f => ({ ...f, skillInput: e.target.value }));
-    setShowSuggestions(true);
   };
 
   const handleSkillKeyDown = (e) => {
@@ -82,16 +85,11 @@ const CreateRequisition = () => {
   const addSkill = (skill) => {
     if (!form.skills.includes(skill)) {
       setForm(f => ({ ...f, skills: [...f.skills, skill], skillInput: "" }));
-      setShowSuggestions(false);
     }
   };
 
   const removeSkill = (skill) => {
     setForm(f => ({ ...f, skills: f.skills.filter(s => s !== skill) }));
-  };
-
-  const handleSuggestionClick = (skill) => {
-    addSkill(skill);
   };
 
   const handleSubmit = (e) => {
@@ -105,6 +103,14 @@ const CreateRequisition = () => {
       confirmButtonColor: "#2563eb",
       confirmButtonText: "OK"
     }).then(() => navigate("/requisitions"));
+  };
+
+  const handleRecruitersChange = (selected) => {
+    setForm(f => ({ ...f, recruiters: selected ? selected.map(opt => opt.value) : [] }));
+  };
+
+  const handleSkillsChange = (selected) => {
+    setForm(f => ({ ...f, skills: selected ? selected.map(opt => opt.value) : [] }));
   };
 
   return (
@@ -140,18 +146,14 @@ const CreateRequisition = () => {
           <div className="create-requisition-row">
             <div className="create-requisition-field">
               <label>Recruiters *</label>
-              <Autocomplete
-                multiple
+              <Select
+                isMulti
                 options={recruiterOptions}
-                value={form.recruiters}
-                onChange={(_, value) => setForm(f => ({ ...f, recruiters: value }))}
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Select Recruiter(s)" variant="outlined" size="small" />
-                )}
-                filterSelectedOptions
-                disableCloseOnSelect
-                sx={{ background: '#fff', borderRadius: '5px' }}
-                getOptionDisabled={(option) => form.recruiters.includes(option)}
+                value={recruiterOptions.filter(opt => form.recruiters.includes(opt.value))}
+                onChange={handleRecruitersChange}
+                placeholder="Select Recruiter(s)"
+                classNamePrefix="react-select"
+                styles={{ menu: base => ({ ...base, zIndex: 9999 }) }}
               />
               <div style={{fontSize:'0.92em',color:'#888',marginTop:2}}>Search and select one or more recruiters</div>
             </div>
@@ -190,19 +192,15 @@ const CreateRequisition = () => {
           <div className="create-requisition-row">
             <div className="create-requisition-field" style={{position:'relative'}}>
               <label>Skills *</label>
-              <Autocomplete
-                multiple
-                freeSolo
-                options={skillSuggestions.length ? skillSuggestions : []}
-                value={form.skills}
-                onChange={(_, value) => setForm(f => ({ ...f, skills: value }))}
-                onInputChange={(_, value) => setForm(f => ({ ...f, skillInput: value }))}
-                renderInput={(params) => (
-                  <TextField {...params} placeholder="Type or select skills" variant="outlined" size="small" />
-                )}
-                filterSelectedOptions
-                disableCloseOnSelect
-                sx={{ background: '#fff', borderRadius: '5px' }}
+              <CreatableSelect
+                isMulti
+                options={skillOptions}
+                value={form.skills.map(s => ({ value: s, label: s }))}
+                onChange={handleSkillsChange}
+                onInputChange={inputValue => setForm(f => ({ ...f, skillInput: inputValue }))}
+                placeholder="Type or select skills"
+                classNamePrefix="react-select"
+                styles={{ menu: base => ({ ...base, zIndex: 9999 }) }}
               />
               <div style={{fontSize:'0.92em',color:'#888',marginTop:2}}>Search, select or add new skills</div>
             </div>

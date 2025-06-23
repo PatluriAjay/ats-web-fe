@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/AssignCandidates.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { skillsOptions } from "../constants/skills";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
+import Select from "react-select";
 import Swal from "sweetalert2";
 import { AiOutlineEye } from "react-icons/ai";
 
@@ -256,17 +255,14 @@ const AssignCandidates = () => {
             onChange={e => { setSearchName(e.target.value); setPage(1); }}
             style={{minWidth:180,maxWidth:260,padding:'0.6rem 1rem',border:'1.5px solid #d1d5db',borderRadius:6,background:'#fff',fontSize:'1rem'}}
           />
-          <Autocomplete
-            multiple
-            options={skillsOptions}
-            value={searchSkills}
-            onChange={(_, value) => { setSearchSkills(value); setPage(1); }}
-            renderInput={(params) => (
-              <TextField {...params} placeholder="Search by skills" variant="outlined" size="small" />
-            )}
-            filterSelectedOptions
-            disableCloseOnSelect
-            sx={{ minWidth: 300, maxWidth: 340, background: '#fff', borderRadius: '6px' }}
+          <Select
+            isMulti
+            options={skillsOptions.map(s => ({ value: s, label: s }))}
+            value={searchSkills.map(s => ({ value: s, label: s }))}
+            onChange={selected => { setSearchSkills(selected ? selected.map(opt => opt.value) : []); setPage(1); }}
+            placeholder="Search by skills"
+            classNamePrefix="react-select"
+            styles={{ container: base => ({ ...base, minWidth: 300, maxWidth: 340 }), menu: base => ({ ...base, zIndex: 9999 }) }}
           />
           <button className="assign-btn" style={{marginLeft:'auto',minWidth:180,fontWeight:600,fontSize:'1.05rem',padding:'0.7rem 1.5rem'}} onClick={handleAssign}>
             Assign {selectedCandidates.length} Candidate(s)
