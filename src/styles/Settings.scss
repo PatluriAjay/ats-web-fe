@@ -1,0 +1,242 @@
+// Settings Management Table Styles
+.settings-page {
+  border-radius: 10px;
+}
+
+.settings-header-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.settings-title-group h1 {
+  font-size: 2rem;
+  margin: 0;
+}
+.settings-title-group p {
+  color: #888;
+  margin: 0.2rem 0 0 0;
+  font-size: 1rem;
+}
+.export-btn {
+  background: #0078B9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 1rem;
+  transition: background 0.2s;
+}
+.export-btn:hover {
+  background: #0078B990;
+}
+
+.settings-table-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.settings-search {
+  flex: 1;
+  max-width: 320px;
+  padding: 0.6rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+.create-btn {
+  background: #0078B9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.create-btn:hover {
+  background: #0078B990;
+}
+
+.settings-table-wrapper {
+  background: #fafbfc;
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.settings-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.settings-table th, .settings-table td {
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+}
+.settings-table th {
+  color: #888;
+  font-size: 0.98rem;
+  font-weight: 600;
+  background: #f4f6fb;
+  border-bottom: 2px solid #e0e0e0;
+}
+.settings-table td {
+  font-size: 1.05rem;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+.settings-table tr:last-child td {
+  border-bottom: none;
+}
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.edit-btn {
+  color: #2563eb;
+}
+.edit-btn:hover {
+  background: #e0e7ff;
+}
+.delete-btn {
+  color: #e53e3e;
+}
+.delete-btn:hover {
+  background: #ffeaea;
+}
+
+// Modal styles
+.settings-modal-overlay {
+  background: rgba(0,0,0,0.18);
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.settings-modal {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem 2.5rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  outline: none;
+}
+.settings-modal h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #2563eb;
+}
+.modal-field {
+  margin-bottom: 1.2rem;
+}
+.modal-field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+.modal-field input, .modal-field textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: none;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}
+.save-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.save-btn:hover {
+  background: #174ea6;
+}
+.cancel-btn {
+  background: #e0e0e0;
+  color: #222;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cancel-btn:hover {
+  background: #c7c7c7;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  margin-right: 0.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.icon-btn.edit-btn:hover {
+  background: #e0e7ff;
+}
+.icon-btn.delete-btn:hover {
+  background: #ffeaea;
+}
+.icon-btn svg {
+  display: block;
+}
+
+.settings-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  margin-top: 1.2rem;
+}
+.pagination-btn {
+  background: #f4f6fb;
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.pagination-btn.active {
+  background: #0078B9;
+  color: #fff;
+}
+.pagination-btn:disabled {
+  background: #e0e0e0;
+  color: #aaa;
+  cursor: not-allowed;
+}

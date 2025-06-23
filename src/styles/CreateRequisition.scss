@@ -1,0 +1,161 @@
+.create-requisition-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .create-requisition-container {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem;
+  }
+}
+
+.create-requisition-section {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.create-requisition-section-title {
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.create-requisition-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.create-requisition-field {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.create-requisition-field label {
+  font-size: 0.98rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #222;
+}
+
+.create-requisition-field input,
+.create-requisition-field select,
+.create-requisition-field textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  padding: 0.55rem 0.8rem;
+  font-size: 1rem;
+  background: #fff;
+  transition: border 0.2s;
+}
+.create-requisition-field input:focus,
+.create-requisition-field select:focus,
+.create-requisition-field textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+.create-requisition-field select {
+  padding-right: 2.2rem; /* Add space for dropdown arrow */
+  background: #fff url("data:image/svg+xml,%3Csvg width='16' height='16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%23222' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 0.8rem center/1.1rem 1.1rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.create-requisition-field select[multiple] {
+  min-height: 90px;
+  padding-right: 0.8rem;
+  background: #fff;
+  background-image: none;
+  overflow-y: auto;
+}
+
+.create-requisition-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.create-requisition-actions button {
+  min-width: 120px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.create-requisition-actions .save-btn {
+  background: #2563eb;
+  color: #fff;
+}
+.create-requisition-actions .save-btn:hover {
+  background: #1746a2;
+}
+.create-requisition-actions .cancel-btn {
+  background: #f3f4f6;
+  color: #222;
+}
+.create-requisition-actions .cancel-btn:hover {
+  background: #e5e7eb;
+}
+
+/* Custom multi-select dropdown for hiring managers */
+.custom-multiselect-input {
+  min-height: 38px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  padding: 0.55rem 0.8rem;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+}
+.custom-multiselect-input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+.custom-multiselect-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .create-requisition-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .create-requisition-actions {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": 1,
+  "fullName": "Priya Sharma",
+  "name": "Priya Sharma",
+  "email": "priya.sharma@email.com",
+  "phone": "+91-9876543210",
+  "profilePicUrl": "https://randomuser.me/api/portraits/women/44.jpg",
+  "jobTitle": "Frontend Developer",
+  "location": "Bangalore",
+  "experience": 4,
+  "age": 27,
+  "dob": "1998-05-12",
+  "gender": "Female",
+  "nationality": "Indian",
+  "linkedin": "https://linkedin.com/in/priyasharma",
+  "portfolio": "https://priyasharma.dev",
+  "github": "https://github.com/priyasharma",
+  "status": "Shortlisted",
+  "skills": ["React", "JavaScript", "TypeScript", "Redux", "HTML", "CSS"],
+  "resumeUrl": "https://example.com/resume/priyasharma.pdf",
+  "experienceDetails": [
+    {
+      "title": "Frontend Developer",
+      "company": "Tech Solutions Pvt Ltd",
+      "duration": "2021 - Present",
+      "description": "Developed and maintained web applications using React and Redux. Led UI/UX improvements and collaborated with backend teams."
+    },
+    {
+      "title": "Web Developer",
+      "company": "Webify Inc.",
+      "duration": "2019 - 2021",
+      "description": "Built responsive websites and dashboards. Worked closely with designers and QA for feature rollouts."
+    }
+  ]
+}
